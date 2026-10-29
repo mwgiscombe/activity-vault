@@ -1,0 +1,17 @@
+:root {
+    --av-primary: #4f46e5;
+    --av-secondary: #8b5cf6;
+    --av-success: #22c55e;
+    --av-dark: #1e293b;
+    --av-light: #f8fafc;
+    --av-accent: #FF7A59;  }
+
+
+  .btn-primary{
+    background-color: var(--av-primary);
+    border: var(--av-primary);
+}
+
+.badge{
+    background-color: var(--av-accent);
+}
