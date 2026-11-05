@@ -1,11 +1,24 @@
-import React from 'react'
+import Nav from "@/components/Nav";
+import { login } from "./actions";
 
-function page() {
+export default async function LoginPage({ searchParams }) {
+
+
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <>
+    <Nav />
+    <section className='py-5'>
+    <form action={login}>
+      <label htmlFor="email">Email</label>
+      <input id="email" name="email" type="email" required />
 
-export default page
+      <label htmlFor="password">Password</label>
+      <input id="password" name="password" type="password" required />
+
+  
+      <button type="submit">Log in</button>
+    </form>
+    </section>
+    </>
+  );
+}

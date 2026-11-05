@@ -1,9 +1,19 @@
+'use client'
+import Nav from "@/components/Nav";
+import { useEffect, useState } from "react";
+import { createClient } from "@supabase/supabase-js";
 export default function Home() {
+ const [user, setUser] = useState(null)
+
+
   return (
     <>
+    <Nav />
       {/* Hero */}
-      <section className="bg-light py-5 border-bottom">
-        <div className="container py-5">
+      <section className="bg-light py-5 border-bottom heroSection">
+      <div className='overlay'></div>
+        <div className="container py-5 heroContainer">
+        
           <div className="row align-items-center">
             <div className="col-lg-6">
               <span className="badge mb-3 p-1">
@@ -14,7 +24,7 @@ export default function Home() {
                 Plan Engaging Youth Programs in Minutes
               </h1>
 
-              <p className="lead text-secondary mb-4">
+              <p className="lead  mb-4">
                 Generate activities, scavenger hunts, lesson plans,
                 printables, and enrichment resources without spending
                 hours searching Pinterest or Google.
@@ -63,6 +73,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+        
       </section>
 
       {/* Features */}

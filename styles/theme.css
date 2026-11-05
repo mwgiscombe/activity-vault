@@ -15,3 +15,12 @@
 .badge{
     background-color: var(--av-accent);
 }
+
+.profileSide{
+    height: ''
+}
+
+@media print {
+    nav, form, button { display: none; }
+    .printable-sheet { page-break-before: always; }
+  }
