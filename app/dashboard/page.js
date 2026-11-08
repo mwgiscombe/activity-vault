@@ -5,10 +5,18 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation"
 import Image from "next/image";
 import ActivityForm from "@/components/ActivityForm";
-import coin from '@/public/images/coin.png'
+
 import UserLibrary from "@/components/UserLibrary";
+import Link from "next/link";
 
-
+   const profileLinks=[
+        {title: 'Library',
+       
+        },
+        {title: 'Actions',
+            component: ''
+        }
+    ]
         const dashboardActions=[
             {title: 'Create Activity',
                 id: 1,
@@ -28,14 +36,7 @@ import UserLibrary from "@/components/UserLibrary";
             }
         ]
 
-        const profileLinks=[
-            {title: 'Library',
-            component: ''
-            },
-            {title: 'Actions',
-                component: ''
-            }
-        ]
+        
 
 async function DashboardContent(){
     await connection()
@@ -53,43 +54,100 @@ async function DashboardContent(){
      .eq('id', user.id)
      .maybeSingle()
 
+   
      return(
 
     <>
-    <Nav />
-    <UserLibrary userId={user.id} />
-    <section className='d-flex gap-4 h-100'>
-        <div className=' border flex-grow-0 px-4 bg-dark text-light profileSide h-100'>
-            {profile ? 
-                  <>
-                  <h1>Hi there, {profile.full_name}</h1>
-                  <p>{profile.email}</p>
-                  <p>Current Plan: {profile.plan}</p>
-                 <div className='badge bg-danger px-4 py-2 align-items-center           justify-content-center gap-2 w-25 d-flex flex-row'><Image alt='coin'        src={coin} width='25' /> <p className='p-0 m-0'>{profile.credits}</p></ div>
-                 <hr />
-                 <div className='profileLinksWrapper d-flex flex-column gap-2'>
-                    {profileLinks.map((link, i)=>(
-                        <p className='profileLink' key={i}>{link.title}</p>
-                    ))}
-                 </div>
-                        
-                        
-                  </>  : ''  
-        }
-        </div>
+    
+    
+    <section className='d-flex gap-4 h-100 mt-4'>
+        
         <div className=' d-flex flex-row flex-wrap dashboardActionsWrapper flex-grow-1 gap-3'>
-            {dashboardActions.map((action)=>(
-                <div key={action.id}
-                className='d-flex flex-column shadow p-2 rounded'
-                style={{
-                    borderTop: `10px solid ${action.color}`
-                }}>
-                    <h3>{action.title}</h3>
-                </div>
-            ))}
+        <div className="bg-white border rounded-4 p-5 mb-4 shadow-sm">
+  <div className="row align-items-center">
+    <div className="col-lg-8">
+      <span className="badge bg-primary-subtle text-primary mb-3">
+        Activity Vault
+      </span>
+
+      <h1 className="display-5 fw-bold mb-3">
+        Create engaging learning experiences in minutes.
+      </h1>
+
+      <p className="lead text-secondary mb-4">
+        Generate activities, lesson plans, camps, and scavenger hunts. Save
+        everything to your library and customize it for your learners.
+      </p>
+      <hr />
+
+      <p className="lead text-secondary mb-4">
+        What should we create today?
+      </p>
+
+      <div className="d-flex flex-wrap gap-2">
+        <Link href="/activities/create" className="btn btn-primary btn-lg">
+          🎲 Activity
+        </Link>
+
+        <Link href="/lesson-plans/create" className="btn btn-outline-primary btn-lg">
+          📚 Lesson Plan
+        </Link>
+
+        <Link href="/camps/create" className="btn btn-outline-primary btn-lg">
+          🏕️ Camp
+        </Link>
+
+        <Link href="/scavenger-hunts/create" className="btn btn-outline-primary btn-lg">
+          🔍 Scavenger Hunt
+        </Link>
+      </div>
+    </div>
+
+    <div className="col-lg-4 mt-4 mt-lg-0">
+      <div className="row g-3">
+        <div className="col-6">
+          <div className="card text-center border-0 bg-light">
+            <div className="card-body">
+              <h3 className="fw-bold mb-0">124</h3>
+              <small className="text-muted">Activities</small>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-6">
+          <div className="card text-center border-0 bg-light">
+            <div className="card-body">
+              <h3 className="fw-bold mb-0">12</h3>
+              <small className="text-muted">Lesson Plans</small>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-6">
+          <div className="card text-center border-0 bg-light">
+            <div className="card-body">
+              <h3 className="fw-bold mb-0">4</h3>
+              <small className="text-muted">Camps</small>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-6">
+          <div className="card text-center border-0 bg-light">
+            <div className="card-body">
+              <h3 className="fw-bold mb-0">8</h3>
+              <small className="text-muted">Scavenger Hunts</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+         
 
         </div>
-            <ActivityForm />
+           
     </section>
   
   </>

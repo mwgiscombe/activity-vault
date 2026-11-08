@@ -17,7 +17,7 @@ export async function POST(request) {
   }
 
   // 2. Validate input
-  const { theme, ageGroup, groupSize, duration, materialsOnHand } =
+  const { theme, ageGroup, groupSize, duration, materialsOnHand, learningGoals, printables, prep_steps, facilitator_tips } =
     await request.json();
 
   if (!theme?.trim() || !ageGroup?.trim()) {
@@ -45,8 +45,12 @@ export async function POST(request) {
         `Age group: ${ageGroup}\n` +
         `Group size: ${groupSize || "not specified"}\n` +
         `Duration: ${duration || 45} minutes\n` +
-        `Materials already on hand: ${materialsOnHand || "none specified"}`,
-      text: { format: zodTextFormat(ActivitySchema, "activity") },
+        `Materials already on hand: ${materialsOnHand || "none specified"}` +  
+        `Learning goals: ${learningGoals || "none specified"}` +
+        `printables: ${printables || 'not specified'}` +
+        `Prep Steps: ${prep_steps || 'not specified'}` +
+        `Facilitator Tips: ${facilitator_tips || 'not specified'}`,
+        text: { format: zodTextFormat(ActivitySchema, "activity") },
     });
 
     return NextResponse.json({ activity: response.output_parsed });

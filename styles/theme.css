@@ -17,10 +17,17 @@
 }
 
 .profileSide{
-    height: ''
+    min-height: calc(100vh - 126px);
+    width: 350px;
+    min-width: 350px
 }
 
 @media print {
     nav, form, button { display: none; }
     .printable-sheet { page-break-before: always; }
+  }
+
+  .genForm input{
+    min-height: 50px;
+    border-radius: 10px;
   }

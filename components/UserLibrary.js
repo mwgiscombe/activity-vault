@@ -1,6 +1,7 @@
 
 import { createClient } from "@/utils/supabase/server";
 import { connection } from "next/server";
+import Link from "next/link";
 
 export default async function UserLibrary({userId}){
 
@@ -36,6 +37,8 @@ export default async function UserLibrary({userId}){
             </div>
            <h4>{item.title}</h4> 
            <p>{item.summary}</p> 
+           <Link href={`/activities/${item.id}`} className="btn btn-outline-primary btn-sm">View</Link>
+           
         </div>
        
        ))}
