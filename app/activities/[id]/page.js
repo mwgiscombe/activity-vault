@@ -1,12 +1,12 @@
 import Nav from "@/components/Nav";
 import { createClient } from "@/utils/supabase/server";
 
-
+export const dynamic = "force-dynamic";
 export default async function ActivityDetails({params}) {
   const { id } = await params
   const supabase = await createClient()
 
-  const {data: activity} = await supabase
+  const {data: activity} = await supabase 
           .from('activities')
           .select('*')
           .eq('id', id)
@@ -24,7 +24,7 @@ export default async function ActivityDetails({params}) {
         </div>
   
         <div className="card-body">
-          <h5 className="card-title">{activity.title}</h5>
+          <h5 className="card-title">{activity.title}!</h5>
   
           <p className="card-text text-muted">
             
