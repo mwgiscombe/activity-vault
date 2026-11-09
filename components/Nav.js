@@ -24,7 +24,7 @@ function Nav() {
   return () => subscription.unsubscribe()
   
    },[])
-   console.log('user', user)
+  
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
     <div className="container-fluid">
@@ -50,11 +50,11 @@ function Nav() {
         </ul>
         <span className="navbar-text">
           {user ? 
-          <>
+          <div className='d-flex flex-row align-items-center justify-content-center gap-2'>
           
-            <p>Welcome Back, {user.user_metadata.full_name}!</p>
+            <Link href='/dashboard'>👤 Welcome Back, {user.user_metadata.full_name}!</Link>
             <LogoutButton />
-            </>:
+            </div>:
            <>
            <button className="btn btn-light" onClick={()=>router.push('/login')}>Login</button>
            <button type="button" className="btn btn-info" onClick={()=>router.push('/signup')}>SignUp</button>

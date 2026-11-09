@@ -1,10 +1,25 @@
 
 import { createClient } from "@/utils/supabase/server";
 import { connection } from "next/server";
+import { Suspense } from "react";
+import { notFound } from "next/navigation";
 import Link from "next/link";
+import Nav from "@/components/Nav";
 
-export default async function UserLibrary(){
+export default function UserLibrary(){
 
+    return(
+
+    <>
+   <Suspense fallback={<p className='text-muted p-3'>Loading...</p>}>
+    <UserLibraryContent />
+    </Suspense>
+    </>
+    )
+}
+
+async function UserLibraryContent(){
+    await connection()
     const supabase = await createClient()
     const {data: userData, error: userError} = await supabase.auth.getUser()
         if(userError || !userData?.user){
