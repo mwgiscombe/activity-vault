@@ -1,7 +1,23 @@
 import Nav from "@/components/Nav";
 import { createClient } from "@/utils/supabase/server";
+import { connection } from "next/server";
+import { Suspense } from "react";
+import { notFound } from "next/navigation";
 
-export default async function Printable({params}){
+export default  function Printable({params}){
+
+    return(
+        <>
+        <Nav />
+        <Suspense fallback={<p className='text-muted p-3'>Loading....</p>}>
+        <PrintableContent params={params} />
+        </Suspense>
+      </>
+        
+    )
+    }
+
+async function PrintableContent({params}){
     const {id} = await params
     const supabase = await createClient()
 
